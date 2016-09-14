@@ -16,9 +16,9 @@ for line in lines:
     for word in words:
         newword = ""
         newwords = dictionary.synonym(word)
-        if newwords is None
+        if newwords is None:
             newword = word
-        else
+        else:
             for nword in newwords:
                 if len(nword) > len(word):
                     newword = nword
@@ -27,3 +27,5 @@ for line in lines:
                 newword = word
         outfile.write(newword + " ")
     outfile.write("\n")
+file.close()
+outfile.close()
