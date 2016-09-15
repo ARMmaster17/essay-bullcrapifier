@@ -9,7 +9,9 @@ filepath = sys.argv[1]
 file = open(filepath, "r")
 print "Loading blacklist"
 fileblacklist = open("blacklist.txt", "r")
-blacklist = fileblacklist.readlines()
+blacklist = []
+for item in fileblacklist.readlines():
+    blacklist.append(item.replace("\n", ""))
 fileblacklist.close()
 print "Opened file " + file.name
 outfile = open("output.txt", "w+")
@@ -20,9 +22,7 @@ for line in lines:
     for word in words:
         newword = ""
         newwords = dictionary.synonym(word)
-        if newwords is None:
-            newword = word
-        elif word.lower() in blacklist:
+        if word.lower() in blacklist or newwords is None:
             newword = word
         else:
             for nword in newwords:
