@@ -1,21 +1,25 @@
 #!/usr/bin/python
 
 import sys
+import os
 from PyDictionary import PyDictionary
 dictionary=PyDictionary()
 
-print "Starting up."
-filepath = sys.argv[1]
-file = open(filepath, "r")
-print "Loading blacklist"
+print "I:Starting up."
+print "I:Loading blacklist"
 fileblacklist = open("blacklist.txt", "r")
 blacklist = []
 for item in fileblacklist.readlines():
     blacklist.append(item.replace("\n", ""))
 fileblacklist.close()
-print "Opened file " + file.name
+if os.path.isfile("output.txt"):
+    print "W:Existing output file found."
+    os.remove("output.txt")
+filepath = sys.argv[1]
+file = open(filepath, "r")
+print "I:Opened file " + file.name
 outfile = open("output.txt", "w+")
-print "Reading file"
+print "I:Reading file"
 lines = file.readlines()
 for line in lines:
     words = line.split()
@@ -33,5 +37,6 @@ for line in lines:
                 newword = word
         outfile.write(newword + " ")
     outfile.write("\n")
+print "I:Cleaning up"
 file.close()
 outfile.close()
