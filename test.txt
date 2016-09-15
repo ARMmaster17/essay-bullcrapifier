@@ -1,2 +1,1 @@
-This is a test sentence
-You must only have one sentence per line
+this is an example sentence.

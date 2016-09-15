@@ -7,6 +7,10 @@ dictionary=PyDictionary()
 print "Starting up."
 filepath = sys.argv[1]
 file = open(filepath, "r")
+print "Loading blacklist"
+fileblacklist = open("blacklist.txt", "r")
+blacklist = fileblacklist.readlines()
+fileblacklist.close()
 print "Opened file " + file.name
 outfile = open("output.txt", "w+")
 print "Reading file"
@@ -17,6 +21,8 @@ for line in lines:
         newword = ""
         newwords = dictionary.synonym(word)
         if newwords is None:
+            newword = word
+        elif word.lower() in blacklist:
             newword = word
         else:
             for nword in newwords:
