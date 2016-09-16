@@ -21,9 +21,15 @@ print "I:Opened file " + file.name
 outfile = open("output.txt", "w+")
 print "I:Reading file"
 lines = file.readlines()
+linecounter = 1
+linemax = len(lines)
 for line in lines:
+    print linecounter, "/", linemax, " ", round((float(linecounter)/float(linemax)) * 100, 1), "%"
     words = line.split()
+    wordcounter = 1
+    wordmax = len(words)
     for word in words:
+        print "\t", wordcounter, "/", wordmax, " ", round((float(wordcounter)/float(wordmax)) * 100, 1), "%"
         newword = ""
         newwords = dictionary.synonym(word)
         if word.lower() in blacklist or newwords is None:
@@ -36,7 +42,9 @@ for line in lines:
             if newword == "":
                 newword = word
         outfile.write(newword + " ")
+        wordcounter += 1
     outfile.write("\n")
+    linecounter += 1
 print "I:Cleaning up"
 file.close()
 outfile.close()
