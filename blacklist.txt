@@ -6,9 +6,14 @@ as
 be
 for
 how
+i
 if
 in
 is
+it
+it's
+me
+my
 of
 on
 that
@@ -21,3 +26,4 @@ when
 where
 who
 why
+you
